@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- <div class="page-banner bg_cover" style="background-image: url({% static 'images/page-banner-1.jpg' %})">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-banner-content wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+              {% comment %} <h3 class="page-title"><b>Blog Details</b> <br><span>Page for Single Blog.</span></h3> {% endcomment %}
+              <h3 class="page-title"><span>{{ post.title }}</span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </header>
+
+
+  <section class="blog-details-area pt-70 pb-120">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="blog-details-content mt-50">
+            <div class="details-image">
+              <img src="{{ post.image.url }}" alt="Blog Details">
+            </div>
+            <h3 class="details-title">{{ post.title }}</h3>
+            <p class="text">
+              {{ post.content }}
+            </p>
+            <!-- <blockquote class="blockquote">
+              <img class="quote" src="{% static 'images/quote.png'%}" alt="quote">
+              <p class="text"> <i class="fa fa-quote-left"></i> There are many variations of passages of Lorem Ipsum
+                available, but the majority have suffered alteration in some form, by injected humour, or randomised
+                words. which don't look. <i class="fa fa-quote-right"></i></p>
+            </blockquote> -->
+            <div class="blog-share d-flex">
+              <span>Share :</span>
+              <ul class="social">
+                <li><a class="color-1" href="#"><i class="lni-facebook-filled"></i></a></li>
+                <li><a class="color-2" href="#"><i class="lni-twitter-original"></i></a></li>
+                <li><a class="color-3" href="#"><i class="lni-instagram-original"></i></a></li>
+                <li><a class="color-4" href="#"><i class="lni-linkedin-original"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Comments -->
+          <div class="blog-details-comment pt-115">
+            <h4 class="comment-title">Comments (2)</h4>
+            <ul class="comment-list pt-10">
+              {% for comment in comments %}
+                <li>
+                  <div class="single-comment-items d-sm-flex align-items-end">
+                    <div class="comment-author">
+                      <img src="{% static 'images/author-1.jpg'%}" alt="author">
+                    </div>
+                    <div class="comment-content media-body">
+                      <h5 class="comment-name">{{ comment.user }}</h5>
+                      <p class="text">
+                        {{ comment.content }}
+                      </p>
+                      <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                      <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
+                      <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
+                    </div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <!-- <div class="blog-details-comment pt-115">
+            <h4 class="comment-title">Comments (2)</h4>
+            <ul class="comment-list pt-10">
+              <li>
+                <div class="single-comment-items d-sm-flex align-items-end">
+                  <div class="comment-author">
+                    <img src="{% static 'images/author-1.jpg'%}" alt="author">
+                  </div>
+                  <div class="comment-content media-body">
+                    <h5 class="comment-name">Kosmi Kotalia</h5>
+                    <p class="text">There are many variations of passages of Lorem Ipsum available, but the majority
+                      some form, by injected humour, or randomised words which.</p>
+                    <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                    <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
+                    <a href="#"><i class="fa fa-clock-o"></i>39 minits ago</a>
+                  </div>
+                </div>
+                <ul class="comment-list comment-reply">
+                  <li>
+                    <div class="single-comment-items d-sm-flex align-items-end">
+                      <div class="comment-author">
+                        <img src="{% static 'images/author-2.jpg'%}" alt="author">
+                      </div>
+                      <div class="comment-content media-body">
+                        <h5 class="comment-name">Kosmi Kotalia</h5>
+                        <p class="text">There are many variations of passages of Lorem Ipsum available, but some form,
+                          by injected humour, or randomised words.</p>
+                        <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                        <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
+                        <a href="#"><i class="fa fa-clock-o"></i>39 minits ago</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="single-comment-items d-sm-flex align-items-end">
+                  <div class="comment-author">
+                    <img src="{% static 'images/author-3.jpg'%}" alt="author">
+                  </div>
+                  <div class="comment-content media-body">
+                    <h5 class="comment-name">Kosmi Kotalia</h5>
+                    <p class="text">There are many variations of passages of Lorem Ipsum available, but the majority
+                      some form, by injected humour, or randomised words which.</p>
+                      <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                    <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
+                    <a href="#"><i class="fa fa-clock-o"></i>39 minits ago</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div> -->
+          <!-- Comment form -->
+          <div class="blog-details-comment-form pt-115">
+            <h4 class="comment-form-title pb-10"><i class="lni-envelope"></i> Leave <span>A Comment.</span></h4>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="comment-form mt-45">
+                  <input type="text" placeholder="Name">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="comment-form mt-45">
+                  <input type="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="comment-form mt-45">
+                  <textarea placeholder="Enter your comment..."></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="comment-form mt-45">
+                  <button type="submit" class="main-btn">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Left sidebar -->
+        <div class="col-lg-4">
+          <div class="blog-sidebar mt-50">
+            <div class="blog-category">
+              <div class="category-title">
+                <h4 class="title"><i class="lni-list"></i> Recent Posts</h4>
+              </div>
+              <div class="category-list">
+                <ul>
+                  {% for post in posts %}
+                  <div class="d-sm-flex align-items-end my-3">
+                    <div class="mr-2">
+                      <a href="{% url 'blog:post-detail' post.slug %}">
+                        <img src="{{ post.image.url }}" alt="author" width="120px">
+                      </a>
+                    </div>
+                    <div class="">
+                      <p class="text text-decoration-none fs-6">
+                        <a href="{% url 'blog:post-detail' post.slug %}" style="color: #f14836;">{{ post.title|truncatechars:50 }}</a>
+                      </p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="blog-category">
+              <div class="category-title">
+                <h4 class="title"><i class="lni-list"></i> All Categories</h4>
+              </div>
+              <div class="category-list">
+                <ul>
+                  <li><a href="#">All Items</a></li>
+                  <li><a href="#">Wordpress <i class="lni-chevron-right"></i></a></li>
+                  <li><a href="#">HTML <i class="lni-chevron-right"></i></a></li>
+                  <li><a href="#">PSD Design</a></li>
+                  <li><a href="#">CMS <i class="lni-chevron-right"></i></a></li>
+                  <li><a href="#">e-Commerce</a></li>
+                </ul>
+              </div>
+              <div class="category-more">
+                <a href="#"><i class="lni-plus"></i> More Categories</a>
+              </div>
+            </div>
+            <div class="blog-sidebar-wrapper mt-60">
+              <div class="blog-tag">
+                <div class="sidebar-title text-center">
+                  <h4 class="title">Popular Tag</h4>
+                </div>
+                <div class="tag-list">
+                  <a href="#">Isabella</a>
+                  <a href="#">Samantha</a>
+                  <a href="#">Emily</a>
+                  <a href="#">Isabella</a>
+                  <a href="#">Grace</a>
+                  <a href="#">Grace</a>
+                  <a href="#">Madison</a>
+                  <a href="#">Grace</a>
+                  <a href="#">Peyton</a>
+                  <a href="#">Knedy</a>
+                  <a href="#">Alexa</a>
+                  <a href="#">Peyton</a>
+                </div>
+              </div>
+              <div class="blog-project">
+                <div class="sidebar-title text-center">
+                  <h4 class="title">Project</h4>
+                </div>
+                <div class="project-list">
+                  <ul>
+                    <li><a href="#">Deily Projects <span>50</span></a></li>
+                    <li><a href="#">County Projects <span>60</span></a></li>
+                    <li><a href="#">Foren Projects <span>70</span></a></li>
+                    <li><a href="#">High <span> 80</span></a></li>
+                    <li><a href="#">Top Projects <span>90</span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="blog-ratting">
+                <div class="sidebar-title text-center">
+                  <h4 class="title">Ratting</h4>
+                </div>
+                <div class="ratting-list">
+                  <ul>
+                    <li><a href="#">Deily Projects <span>50</span></a></li>
+                    <li><a href="#">County Projects <span>60</span></a></li>
+                    <li><a href="#">Foren Projects <span>70</span></a></li>
+                    <li><a href="#">High <span> 80</span></a></li>
+                    <li><a href="#">Top Projects <span>90</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
