@@ -9,7 +9,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
-    image = models.ImageField(upload_to='comment', default='images/author-3.jpg')
+    image = models.ImageField(upload_to='comment', default='author-3.jpg')
     created_at = models.DateTimeField(auto_now=True)
 
     @property
@@ -25,7 +25,7 @@ class ReplyComment(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='replycomments')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     content = models.TextField()
-    image = models.ImageField(upload_to='comment', default='images/author-3.jpg')
+    image = models.ImageField(upload_to='comment', default='author-3.jpg')
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

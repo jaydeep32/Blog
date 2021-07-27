@@ -53,7 +53,7 @@
                 <li>
                   <div class="single-comment-items d-sm-flex align-items-end">
                     <div class="comment-author">
-                      <img src="{% static 'images/author-1.jpg'%}" alt="author">
+                      <img src="{{ comment.image.url }}" alt="author">
                     </div>
                     <div class="comment-content media-body">
                       <h5 class="comment-name">{{ comment.user }}</h5>
@@ -65,6 +65,28 @@
                       <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
                     </div>
                   </div>
+                  {% with comment.replycomments.all as replycomment %}
+                    {% for comment in replycomment %}
+                      <ul class="comment-list comment-reply">
+                        <li>
+                          <div class="single-comment-items d-sm-flex align-items-end">
+                            <div class="comment-author">
+                              <img src="{{ comment.image.url }}" alt="author">
+                            </div>
+                            <div class="comment-content media-body">
+                              <h5 class="comment-name">{{ comment.user }}</h5>
+                              <p class="text">
+                                {{ comment.content }}
+                              </p>
+                              <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                              <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
+                              <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    {% endfor %}
+                  {% endwith %}
                 </li>
               {% endfor %}
             </ul>
