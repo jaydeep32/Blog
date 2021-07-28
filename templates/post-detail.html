@@ -124,7 +124,7 @@
         </div>
         <div class="col-md-12">
            <!-- Comments -->
-            <div class="blog-details-comment pt-115 blog-details-comment-form">
+            <div class="blog-details-comment pt-115 blog-details-comment-form" id="comments">
               <div class="d-flex justify-content-between">
                 <h4 class="comment-title">Comment{{ comments|pluralize }} ({{ comments|length }})</h4>
                 <h4 class="comment-form-title pb-10" data-toggle="modal" data-target="#commentModel">
@@ -145,7 +145,7 @@
                         </p>
                         <a href="#"><i class="fa fa-retweet"></i> Repost</a>
                         <a href="#" data-toggle="modal" data-target="#commentModel{{ comment.id }}"><i class="fa fa-reply-all"></i>Reply</a>
-                        <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
+                        <a href="#comments"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
                       </div>
                     </div>
                     <!-- Modal -->
