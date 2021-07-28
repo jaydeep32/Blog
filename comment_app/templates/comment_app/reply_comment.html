@@ -1,0 +1,56 @@
+{% load reply_comments %}
+
+{% for replycomment in comment.replies.all %}
+    {% if forloop.revcounter < 4 %}
+        <ul class="comment-list comment-reply">
+            <li>
+                <div class="single-comment-items d-sm-flex align-items-end">
+                <div class="comment-author">
+                    <img src="{{ replycomment.image.url }}" alt="author">
+                </div>
+                <div class="comment-content media-body">
+                    <h5 class="comment-name">{{ replycomment.user }}</h5>
+                    <p class="text">
+                    {{ replycomment.content }}
+                    </p>
+                    <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                    <a href="#" data-toggle="modal" data-target="#commentModel{{ replycomment.id }}"><i class="fa fa-reply-all"></i>Reply</a>
+                    <a href="#"><i class="fa fa-clock-o"></i>{{ replycomment.created_at|date:"F d Y P"}}</a>
+                </div>
+                </div>
+                {% reply_comment_tag replycomment %}
+            </li>
+        </ul>
+        <!-- Modal -->
+        <div class="modal fade" id="commentModel{{ replycomment.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Comment.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ replycomment.id }}" name="commentid">
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="comment-form mt-45">
+                        {{ form }}
+                    </div>
+                    </div>
+                    <div class="col-md-12">
+                    <div class="comment-form mt-45">
+                        <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    {% endif %}
+{% endfor %}

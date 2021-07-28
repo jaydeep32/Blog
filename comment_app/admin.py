@@ -1,5 +1,5 @@
 from django.contrib import admin
-from comment_app.models import Comment, ReplyComment
+from comment_app.models import Comment
 
 
 
@@ -8,8 +8,8 @@ class CommentAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(ReplyComment)
-class ReplyCommentAdmin(admin.ModelAdmin):
-    pass
+# @admin.register(ReplyComment)
+# class ReplyCommentAdmin(admin.ModelAdmin):
+#     pass
 
 

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load reply_comments %}
 
 {% block content %}
     <!-- <div class="page-banner bg_cover" style="background-image: url({% static 'images/page-banner-1.jpg' %})">
@@ -45,130 +46,7 @@
               </ul>
             </div>
           </div>
-          <!-- Comments -->
-          <div class="blog-details-comment pt-115">
-            <h4 class="comment-title">Comments (2)</h4>
-            <ul class="comment-list pt-10">
-              {% for comment in comments %}
-                <li>
-                  <div class="single-comment-items d-sm-flex align-items-end">
-                    <div class="comment-author">
-                      <img src="{{ comment.image.url }}" alt="author">
-                    </div>
-                    <div class="comment-content media-body">
-                      <h5 class="comment-name">{{ comment.user }}</h5>
-                      <p class="text">
-                        {{ comment.content }}
-                      </p>
-                      <a href="#"><i class="fa fa-retweet"></i> Repost</a>
-                      <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
-                      <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
-                    </div>
-                  </div>
-                  {% with comment.replycomments.all as replycomment %}
-                    {% for comment in replycomment %}
-                      <ul class="comment-list comment-reply">
-                        <li>
-                          <div class="single-comment-items d-sm-flex align-items-end">
-                            <div class="comment-author">
-                              <img src="{{ comment.image.url }}" alt="author">
-                            </div>
-                            <div class="comment-content media-body">
-                              <h5 class="comment-name">{{ comment.user }}</h5>
-                              <p class="text">
-                                {{ comment.content }}
-                              </p>
-                              <a href="#"><i class="fa fa-retweet"></i> Repost</a>
-                              <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
-                              <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    {% endfor %}
-                  {% endwith %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <!-- <div class="blog-details-comment pt-115">
-            <h4 class="comment-title">Comments (2)</h4>
-            <ul class="comment-list pt-10">
-              <li>
-                <div class="single-comment-items d-sm-flex align-items-end">
-                  <div class="comment-author">
-                    <img src="{% static 'images/author-1.jpg'%}" alt="author">
-                  </div>
-                  <div class="comment-content media-body">
-                    <h5 class="comment-name">Kosmi Kotalia</h5>
-                    <p class="text">There are many variations of passages of Lorem Ipsum available, but the majority
-                      some form, by injected humour, or randomised words which.</p>
-                    <a href="#"><i class="fa fa-retweet"></i> Repost</a>
-                    <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
-                    <a href="#"><i class="fa fa-clock-o"></i>39 minits ago</a>
-                  </div>
-                </div>
-                <ul class="comment-list comment-reply">
-                  <li>
-                    <div class="single-comment-items d-sm-flex align-items-end">
-                      <div class="comment-author">
-                        <img src="{% static 'images/author-2.jpg'%}" alt="author">
-                      </div>
-                      <div class="comment-content media-body">
-                        <h5 class="comment-name">Kosmi Kotalia</h5>
-                        <p class="text">There are many variations of passages of Lorem Ipsum available, but some form,
-                          by injected humour, or randomised words.</p>
-                        <a href="#"><i class="fa fa-retweet"></i> Repost</a>
-                        <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
-                        <a href="#"><i class="fa fa-clock-o"></i>39 minits ago</a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <div class="single-comment-items d-sm-flex align-items-end">
-                  <div class="comment-author">
-                    <img src="{% static 'images/author-3.jpg'%}" alt="author">
-                  </div>
-                  <div class="comment-content media-body">
-                    <h5 class="comment-name">Kosmi Kotalia</h5>
-                    <p class="text">There are many variations of passages of Lorem Ipsum available, but the majority
-                      some form, by injected humour, or randomised words which.</p>
-                      <a href="#"><i class="fa fa-retweet"></i> Repost</a>
-                    <a href="#"><i class="fa fa-reply-all"></i>Reply</a>
-                    <a href="#"><i class="fa fa-clock-o"></i>39 minits ago</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div> -->
-          <!-- Comment form -->
-          <div class="blog-details-comment-form pt-115">
-            <h4 class="comment-form-title pb-10"><i class="lni-envelope"></i> Leave <span>A Comment.</span></h4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="comment-form mt-45">
-                  <input type="text" placeholder="Name">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="comment-form mt-45">
-                  <input type="email" placeholder="Email">
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="comment-form mt-45">
-                  <textarea placeholder="Enter your comment..."></textarea>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="comment-form mt-45">
-                  <button type="submit" class="main-btn">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <!-- Left sidebar -->
         <div class="col-lg-4">
@@ -225,27 +103,6 @@
                   <a href="#">Emily</a>
                   <a href="#">Isabella</a>
                   <a href="#">Grace</a>
-                  <a href="#">Grace</a>
-                  <a href="#">Madison</a>
-                  <a href="#">Grace</a>
-                  <a href="#">Peyton</a>
-                  <a href="#">Knedy</a>
-                  <a href="#">Alexa</a>
-                  <a href="#">Peyton</a>
-                </div>
-              </div>
-              <div class="blog-project">
-                <div class="sidebar-title text-center">
-                  <h4 class="title">Project</h4>
-                </div>
-                <div class="project-list">
-                  <ul>
-                    <li><a href="#">Deily Projects <span>50</span></a></li>
-                    <li><a href="#">County Projects <span>60</span></a></li>
-                    <li><a href="#">Foren Projects <span>70</span></a></li>
-                    <li><a href="#">High <span> 80</span></a></li>
-                    <li><a href="#">Top Projects <span>90</span></a></li>
-                  </ul>
                 </div>
               </div>
               <div class="blog-ratting">
@@ -264,6 +121,99 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-12">
+           <!-- Comments -->
+            <div class="blog-details-comment pt-115 blog-details-comment-form">
+              <div class="d-flex justify-content-between">
+                <h4 class="comment-title">Comment{{ comments|pluralize }} ({{ comments|length }})</h4>
+                <h4 class="comment-form-title pb-10" data-toggle="modal" data-target="#commentModel">
+                  <!-- <i class="lni-envelope"></i> -->
+                  <span class="fs-6">Add Comment.</span></h4>
+              </div>
+              <ul class="comment-list pt-10">
+                {% for comment in comments %}
+                  <li>
+                    <div class="single-comment-items d-sm-flex align-items-end">
+                      <div class="comment-author">
+                        <img src="{{ comment.image.url }}" alt="author">
+                      </div>
+                      <div class="comment-content media-body">
+                        <h5 class="comment-name">{{ comment.user }}</h5>
+                        <p class="text">
+                          {{ comment.content }}
+                        </p>
+                        <a href="#"><i class="fa fa-retweet"></i> Repost</a>
+                        <a href="#" data-toggle="modal" data-target="#commentModel{{ comment.id }}"><i class="fa fa-reply-all"></i>Reply</a>
+                        <a href="#"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
+                      </div>
+                    </div>
+                    <!-- Modal -->
+                      <div class="modal fade" id="commentModel{{ comment.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="staticBackdropLabel">Add Comment.</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ comment.id }}" name="commentid">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="comment-form mt-45">
+                                      {{ form }}
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="comment-form mt-45">
+                                      <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        {% reply_comment_tag comment %}
+                  </li>
+                {% endfor %}
+              </ul>
+              <!-- Modal -->
+              <div class="modal fade" id="commentModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Add Comment.</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="comment-form mt-45">
+                              {{ form }}
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="comment-form mt-45">
+                              <button type="submit" class="btn btn-outline-primary">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
