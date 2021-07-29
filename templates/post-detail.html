@@ -131,58 +131,7 @@
                   <!-- <i class="lni-envelope"></i> -->
                   <span class="fs-6">Add Comment.</span></h4>
               </div>
-              <ul class="comment-list pt-10">
-                {% for comment in comments %}
-                  <li>
-                    <div class="single-comment-items d-sm-flex align-items-end">
-                      <div class="comment-author">
-                        <img src="{{ comment.image.url }}" alt="author">
-                      </div>
-                      <div class="comment-content media-body">
-                        <h5 class="comment-name">{{ comment.user }}</h5>
-                        <p class="text">
-                          {{ comment.content }}
-                        </p>
-                        <a href="#"><i class="fa fa-retweet"></i> Repost</a>
-                        <a href="#" data-toggle="modal" data-target="#commentModel{{ comment.id }}"><i class="fa fa-reply-all"></i>Reply</a>
-                        <a href="#comments"><i class="fa fa-clock-o"></i>{{ comment.created_at|date:"F d Y P"}}</a>
-                      </div>
-                    </div>
-                    <!-- Modal -->
-                      <div class="modal fade" id="commentModel{{ comment.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="staticBackdropLabel">Add Comment.</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <form action="" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{ comment.id }}" name="commentid">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="comment-form mt-45">
-                                      {{ form }}
-                                    </div>
-                                  </div>
-                                  <div class="col-md-12">
-                                    <div class="comment-form mt-45">
-                                      <button type="submit" class="btn btn-outline-primary">Submit</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                        {% reply_comment_tag comment %}
-                  </li>
-                {% endfor %}
-              </ul>
+              {% reply_comment_tag comments %}
               <!-- Modal -->
               <div class="modal fade" id="commentModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">

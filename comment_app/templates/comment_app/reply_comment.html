@@ -1,6 +1,6 @@
 {% load reply_comments %}
 
-{% for replycomment in comment.replies.all %}
+{% for replycomment in comment %}
     {% if forloop.revcounter < 4 %}
         <ul class="comment-list comment-reply">
             <li>
@@ -18,7 +18,7 @@
                     <a href="#comments"><i class="fa fa-clock-o"></i>{{ replycomment.created_at|date:"F d Y P"}}</a>
                 </div>
                 </div>
-                {% reply_comment_tag replycomment %}
+                {% reply_comment_tag replycomment.replies.all %}
             </li>
         </ul>
         <!-- Modal -->
